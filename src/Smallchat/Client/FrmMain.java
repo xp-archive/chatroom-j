@@ -93,7 +93,7 @@ public class FrmMain extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int roomId = Integer.parseInt(fieldRoomId.getText());
                 Room room = ChatManager.getInstance().getRoom(roomId);
-                if (room != null) {
+                if (room.isInitialized()) {
                     room.frm.setVisible(true);
                 } else {
                     JoinRoomRequest request = new JoinRoomRequest(roomId);

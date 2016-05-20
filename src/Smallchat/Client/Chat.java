@@ -48,10 +48,6 @@ public class Chat {
         onInfoChanged();
     }
 
-    public boolean isInitialized() {
-        return initialized;
-    }
-
     private void onInfoChanged() {
         if (username == null) return;
         initialized = true;
@@ -65,6 +61,11 @@ public class Chat {
         frm.fieldMessages.append(String.format("%s\r\n", message));
         frm.fieldMessages.setCaretPosition(frm.fieldMessages.getDocument().getLength());
     }
+
+    public boolean isInitialized() {
+        return initialized;
+    }
+
 }
 
 class FrmChat extends JFrame {

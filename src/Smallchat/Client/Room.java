@@ -18,11 +18,13 @@ public class Room {
     private int roomId;
     private String roomName;
     private HashMap<Integer, RoomMember> members;
+    private boolean initialized;
 
     FrmRoom frm;
 
     public Room() {
         members = new HashMap<>();
+        initialized = false;
 
         frm = new FrmRoom();
         frm.btnSend.addActionListener(new ActionListener() {
@@ -66,6 +68,7 @@ public class Room {
 
     public void onInfoChanged() {
         if (roomName == null) return ;
+        initialized = true;
         frm.setTitle(String.format("聊天室: %s(%d)", roomName, roomId));
         frm.setVisible(true);
     }
@@ -138,6 +141,10 @@ public class Room {
         RoomMember member = members.get(senderId);
         frm.fieldMessages.append(String.format("%s(%d): %s\r\n", member.getUsername(), member.getUserId(), message));
         frm.fieldMessages.setCaretPosition(frm.fieldMessages.getDocument().getLength());
+    }
+
+    public boolean isInitialized() {
+        return initialized;
     }
 
 }
